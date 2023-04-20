@@ -4,20 +4,24 @@ import ballerina/http;
 # bound to port `9090`.
 
 @display {
-    label: "Se",
-    id: "Ser1-d184ac08-58cf-4808-ac69-88899fe3a26e"
+    label: "Cog",
+    id: "Col-cd339aa6-a779-4b0b-9f38-236cd04329e2"
 }
 
 service / on new http:Listener(9090) {
-
     @display {
-        label: "Cog",
-        id: "Col-cd339aa6-a779-4b0b-9f38-236cd04329e2"
+        label: "http",
+        id: "http-208753d7-7880-4923-ba56-0db40d9c3ad0"
     }
-    http:Client cogClient;
+    http:ClientOAuth2Handler httpEp;
 
     function init() returns error? {
-        self.cogClient = check new ("");
+        self.httpEp = new (config = {
+            tokenUrl: "",
+            clientId: "",
+            clientSecret: ""
+        });
+
     }
 
     # A resource for generating greetings
